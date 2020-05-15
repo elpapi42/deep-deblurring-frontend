@@ -1,21 +1,33 @@
 <template>
     <div class="flex flex-col items-center">
+        <app-image 
+            :src='url'
+        />
         <img v-if="input_url" :src="input_url"/>
         <img v-if="output_url" :src="output_url"/>
         <input type="file" id="inputImage" ref="inputImage" v-on:change="handleImageUpload()"/>
         <button v-on:click="submitImage()">Submit</button>
+        <button v-on:click="changeLink">change link</button>
     </div>
 </template>
 
 <script>
+    import AppImage from './AppImage';
+    
+
     export default {
         name: 'DeblurPage',
+
+        components: {
+            AppImage,
+        },
 
         data: function () {
             return {
                 imageFile: '',
                 input_url: null,
                 output_url: null,
+                url: 'https://loremflickr.com/640/360',
             }
         },
 
@@ -40,6 +52,19 @@
                     console.log(error);
                 });
             },
+
+            isFileImage(file) {
+                const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+                return file && acceptedImageTypes.includes(file['type'])
+            },
+
+            changeLink() {
+                if(this.url == 'https://loremflickr.com/640/360') {
+                    this.url = 'https://loremflickr.comm/640/360'
+                } else {
+                    this.url = 'https://loremflickr.com/640/360'
+                }
+            }
         },
     }
 </script>
