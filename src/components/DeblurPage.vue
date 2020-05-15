@@ -60,7 +60,7 @@
 
             changeLink() {
                 if(this.url == 'https://loremflickr.com/640/360') {
-                    this.url = 'https://loremflickr.comm/640/360'
+                    this.url = ''
                 } else {
                     this.url = 'https://loremflickr.com/640/360'
                 }

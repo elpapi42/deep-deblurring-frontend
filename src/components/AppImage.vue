@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class='w-64 h-64 border-8 rounded'>
         <img 
             :src='url'
-            class='w-48 h-48 object-cover'
+            class='w-full h-full rounded object-cover'
             @error='onBrokenLink'
         />
     </div>
