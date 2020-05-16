@@ -33,83 +33,87 @@
 </template>
 
 <script>
-    import AppImage from './AppImage'
+import AppImage from './AppImage'
 
-    export default {
-        name: 'AppUploader',
-        components: { AppImage },
+export default {
+    name: 'AppUploader',
+    components: { AppImage },
 
-        data: function () {
-            return {
-                inputImage: null,
-                inputUrl: '',
-                outputUrl: '',
+    data: function () {
+        return {
+            inputImage: null,
+            inputUrl: '',
+            outputUrl: '',
+        }
+    },
+
+    methods: {
+        handleImageUpload() {
+            this.inputImage = this.$refs.inputImage.files[0];
+
+            if(!this.inputImage) {
+                this.inputUrl = '';
+                this.inputImage = null;
+                return;
             }
+
+            if(this.isFileImage(this.inputImage)) {
+                this.inputUrl = URL.createObjectURL(this.inputImage);
+                return;
+            }
+
+            this.inputUrl = '';
+            this.inputImage = null;
+            alert('Invalid File');
+            return;
         },
 
-        methods: {
-            handleImageUpload() {
-                this.inputImage = this.$refs.inputImage.files[0];
-                if(this.inputImage) {
-                    if(this.isFileImage(this.inputImage)) {
-                        this.inputUrl = URL.createObjectURL(this.inputImage);
-                    } else {
-                        this.inputUrl = '';
-                        this.inputImage = null;
-                        alert('Invalid File')
-                    }
-                } else {
-                    this.inputUrl = '';
-                    this.inputImage = null;
-                }
-            },
+        uploadImage() {
+            if(!this.inputImage) { return; }
 
-            uploadImage() {
-                if(this.inputImage) {
-                    let formData = new FormData();
-                    formData.append('image', this.inputImage);
+            let formData = new FormData();
+            formData.append('image', this.inputImage);
 
-                    this.$http.post(
-                        'http://localhost:8000/api/inference/',
-                        formData,
-                        { headers: { 'Content-Type': 'multipart/form-data' }},
-                    ).then((response) => {
-                        this.outputUrl = response.data.output_image;
-                    }).catch((error) => {
-                        this.outputUrl = '';
-                        console.log(error);
-                    });
-                }
-            },
+            this.$http.post(
+                'http://localhost:8000/api/inference/',
+                formData,
+                { headers: { 'Content-Type': 'multipart/form-data' }},
+            ).then((response) => {
+                this.outputUrl = response.data.output_image;
+            }).catch((error) => {
+                this.outputUrl = '';
+                console.log(error);
+            });
+        },
 
-            downloadImage() {
-                this.$http.get(
-                    this.outputUrl,
-                    { responseType: 'blob' }
-                ).then((response) => {
-                     var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-                     var fileLink = document.createElement('a');
+        downloadImage() {
+            this.$http.get(
+                this.outputUrl,
+                { responseType: 'blob' }
+            ).then((response) => {
+                var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                var fileLink = document.createElement('a');
 
-                     fileLink.href = fileURL;
-                     fileLink.setAttribute('download', this.inputImage.name);
-                     document.body.appendChild(fileLink);
+                fileLink.href = fileURL;
+                fileLink.setAttribute('download', this.inputImage.name);
+                document.body.appendChild(fileLink);
 
-                     fileLink.click();
-                }).catch((error) => {
-                    console.log(error);
-                });
-            },
+                fileLink.click();
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
 
-            isFileImage(file) {
-                const acceptedImageTypes = ['image/jpeg', 'image/png'];
-                return file && acceptedImageTypes.includes(file['type'])
-            },
+        isFileImage(file) {
+            const acceptedImageTypes = ['image/jpeg', 'image/png'];
+            return file && acceptedImageTypes.includes(file['type'])
+        },
 
-            cutName(name, length) {
-                return (name.length > length) ?
-                    name.substring(0, length - 3) + '...' :
-                    name;
-            },
-        }
+        cutName(name, length) {
+            return (name.length > length) ?
+                name.substring(0, length - 3) + '...' :
+                name;
+        },
     }
+}
 </script>
