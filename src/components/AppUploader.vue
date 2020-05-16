@@ -66,7 +66,6 @@
 
             uploadImage() {
                 if(this.inputImage) {
-                    let self = this;
                     let formData = new FormData();
                     formData.append('image', this.inputImage);
 
@@ -74,18 +73,32 @@
                         'http://localhost:8000/api/inference/',
                         formData,
                         { headers: { 'Content-Type': 'multipart/form-data' }},
-                    ).then(function(response) {
-                        self.outputUrl = response.data.output_image;
-                    }).catch(function(error) {
-                        self.outputUrl = '';
+                    ).then((response) => {
+                        this.outputUrl = response.data.output_image;
+                    }).catch((error) => {
+                        this.outputUrl = '';
                         console.log(error);
                     });
                 }
             },
 
             downloadImage() {
-                
-            }
+                this.$http.get(
+                    this.outputUrl,
+                    { responseType: 'blob' }
+                ).then((response) => {
+                     var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                     var fileLink = document.createElement('a');
+
+                     fileLink.href = fileURL;
+                     fileLink.setAttribute('download', this.inputImage.name);
+                     document.body.appendChild(fileLink);
+
+                     fileLink.click();
+                }).catch((error) => {
+                    console.log(error);
+                });
+            },
 
             isFileImage(file) {
                 const acceptedImageTypes = ['image/jpeg', 'image/png'];
