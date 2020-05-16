@@ -1,8 +1,8 @@
 <template>
-    <div class='flex flex-row w-1/3 bg-gray-500 border-8 border-gray-500 rounded items-center justify-center'>
-        <div class='flex flex-col w-full items-center justify-center p-2 space-y-4'>
+    <div class='flex flex-row bg-gray-500 border-8 border-gray-500 rounded items-center justify-center'>
+        <div class='flex flex-col items-center justify-center p-2 space-y-4'>
             <app-image src='https://loremflickr.com/256/1024'/>
-            <label class='w-2/3 bg-gray-600 rounded p-2'>
+            <label class='bg-gray-600 rounded p-2'>
                 <div class='w-full text-center'>
                     <span v-if='false'>Name</span>
                     <span v-else>Select</span>
@@ -15,9 +15,9 @@
                 />
             </label>
         </div>
-        <div class='flex flex-col w-full items-center justify-center p-2 space-y-4'>
-            <app-image src='https://loremflickr.com/256/1024'/>
-            <label class='w-2/3 bg-gray-600 rounded p-2'>
+        <div class='flex flex-col items-center justify-center p-2 space-y-4'>
+            <app-image src=''/>
+            <label class='bg-gray-600 rounded p-2'>
                 <div class='w-full text-center'>
                     <span>Download</span>
                 </div>
