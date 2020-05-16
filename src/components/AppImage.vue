@@ -1,5 +1,5 @@
 <template>
-    <div class='w-64 h-64 border-8 rounded'>
+    <div class='w-24 sm:w-28 md:w-28 lg:w-32 xl:w-48 h-24 sm:h-28 md:h-28 lg:h-32 xl:h-48 border-gray-500 rounded'>
         <img 
             :src='url'
             class='w-full h-full rounded object-cover'

@@ -1,25 +1,27 @@
 <template>
-    <div class="flex flex-col items-center">
-        <app-image 
-            :src='url'
-        />
+    <div class="flex flex-row w-screen h-screen">
+        <div class='flex w-full h-full bg-gray-200 items-center justify-center'>
+            <app-uploader/>
+        </div>
+        <!--
         <img v-if="input_url" :src="input_url"/>
         <img v-if="output_url" :src="output_url"/>
         <input type="file" id="inputImage" ref="inputImage" v-on:change="handleImageUpload()"/>
         <button v-on:click="submitImage()">Submit</button>
         <button v-on:click="changeLink">change link</button>
+        -->
     </div>
 </template>
 
 <script>
-    import AppImage from './AppImage';
+    import AppUploader from './AppUploader';
     
 
     export default {
         name: 'DeblurPage',
 
         components: {
-            AppImage,
+            AppUploader,
         },
 
         data: function () {
