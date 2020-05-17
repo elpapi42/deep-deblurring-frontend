@@ -3,7 +3,7 @@
         <div class='flex w-full h-full bg-gray-200 items-center justify-center'>
             <app-uploader @upload='newUpload'/>
         </div>
-        <div class='flex w-1/4 h-full bg-gray-400 items-center justify-center'>
+        <div class='flex w-1/5 h-full bg-gray-400 items-center justify-center'>
             <app-recent :recents='recentUploads'/>
         </div>
     </div>

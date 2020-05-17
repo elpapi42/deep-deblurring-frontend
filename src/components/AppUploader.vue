@@ -1,7 +1,9 @@
 <template>
     <div class='flex flex-row bg-gray-500 border-8 border-gray-500 rounded items-center justify-center'>
         <div class='flex flex-col items-center justify-center p-2 space-y-4'>
-            <app-image :src='inputUrl'/>
+            <div class='w-14 sm:w-22 md:w-48 lg:w-52 xl:w-64 h-14 sm:h-22 md:h-48 lg:h-52 xl:h-64'>
+                <app-image :src='inputUrl'/>
+            </div>
             <div class='flex w-full justify-around'>
                 <label class='bg-gray-600 rounded p-2'>
                     <div class='text-center'>
@@ -12,7 +14,7 @@
                         type="file"
                         id='inputImage'
                         ref='inputImage'
-                        @change="handleImageUpload"
+                        @change='handleImageUpload'
                         class='hidden'
                     />
                 </label>
@@ -23,7 +25,9 @@
             </div>
         </div>
         <div class='flex flex-col items-center justify-center p-2 space-y-4'>
-            <app-image :src='outputUrl'/>
+            <div class='w-14 sm:w-22 md:w-48 lg:w-52 xl:w-64 h-14 sm:h-22 md:h-48 lg:h-52 xl:h-64'>
+                <app-image :src='outputUrl'/>
+            </div>
             <button 
                 class='bg-gray-600 rounded text-center p-2'
                 @click='downloadImage()'
