@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import DeblurPage from './DeblurPage'
+    import DeblurPage from './components/DeblurPage'
 
     export default {
         name: 'App',
