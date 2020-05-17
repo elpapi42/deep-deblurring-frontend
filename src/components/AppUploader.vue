@@ -53,18 +53,20 @@ export default {
 
             if(!this.inputImage) {
                 this.inputUrl = '';
+                this.outputUrl = '';
                 this.inputImage = null;
                 return;
             }
 
-            if(this.isFileImage(this.inputImage)) {
-                this.inputUrl = URL.createObjectURL(this.inputImage);
+            if(!this.isFileImage(this.inputImage)) {
+                this.inputUrl = '';
+                this.outputUrl = '';
+                this.inputImage = null;
+                alert('Invalid File');
                 return;
             }
-
-            this.inputUrl = '';
-            this.inputImage = null;
-            alert('Invalid File');
+            
+            this.inputUrl = URL.createObjectURL(this.inputImage);
             return;
         },
 
