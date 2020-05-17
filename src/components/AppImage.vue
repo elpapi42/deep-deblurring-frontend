@@ -2,8 +2,8 @@
     <div class='w-full h-full'>
         <img 
             :src='url'
-            class='w-full h-full rounded object-cover'
             @error='onBrokenLink'
+            class='w-full h-full rounded object-cover'
         />
     </div>
 </template>

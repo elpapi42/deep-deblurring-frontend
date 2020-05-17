@@ -1,77 +1,45 @@
 <template>
     <div class='flex flex-row bg-gray-500 border-8 border-gray-500 rounded items-center justify-center'>
-        <div class='flex flex-col items-center justify-center p-2 space-y-4'>
-            <div class='w-14 sm:w-22 md:w-48 lg:w-52 xl:w-64 h-14 sm:h-22 md:h-48 lg:h-52 xl:h-64'>
-                <app-image :src='inputUrl'/>
-            </div>
-            <div class='flex w-full justify-around'>
-                <label class='bg-gray-600 rounded p-2'>
-                    <div class='text-center'>
-                        <span v-if='inputImage'>{{ cutName(inputImage.name, 16) }}</span>
-                        <span v-else>Select</span>
-                    </div>
-                    <input
-                        type="file"
-                        id='inputImage'
-                        ref='inputImage'
-                        @change='handleImageUpload'
-                        class='hidden'
-                    />
-                </label>
-                <button 
-                    class='bg-gray-600 rounded text-center p-2'
-                    @click='uploadImage()'
-                >Upload</button>
-            </div>
+        <div class='w-14 sm:w-22 md:w-48 lg:w-52 xl:w-64 h-14 sm:h-22 md:h-48 lg:h-52 xl:h-64'>
+            <app-image-picker @load='onImageSelected' @error='onImageCleared'/>
         </div>
-        <div class='flex flex-col items-center justify-center p-2 space-y-4'>
-            <div class='w-14 sm:w-22 md:w-48 lg:w-52 xl:w-64 h-14 sm:h-22 md:h-48 lg:h-52 xl:h-64'>
-                <app-image :src='outputUrl'/>
-            </div>
-            <button 
-                class='bg-gray-600 rounded text-center p-2'
-                @click='downloadImage()'
-            >Download</button>
+
+        <el-button 
+            type="primary"
+            icon="el-icon-upload"
+            circle
+            @click='uploadImage'
+        ></el-button>
+
+        <div class='w-14 sm:w-22 md:w-48 lg:w-52 xl:w-64 h-14 sm:h-22 md:h-48 lg:h-52 xl:h-64'>
+            <app-image-downloader :url='outputUrl'/>
         </div>
     </div>
 </template>
 
 <script>
-import AppImage from './AppImage'
+import AppImagePicker from './AppImagePicker'
+import AppImageDownloader from './AppImageDownloader'
 
 export default {
     name: 'AppUploader',
-    components: { AppImage },
+    components: { AppImagePicker, AppImageDownloader },
 
     data: function () {
         return {
             inputImage: null,
-            inputUrl: '',
             outputUrl: '',
         }
     },
 
     methods: {
-        handleImageUpload() {
-            this.inputImage = this.$refs.inputImage.files[0];
+        onImageSelected(image) {
+            this.inputImage = image;
+        },
 
-            if(!this.inputImage) {
-                this.inputUrl = '';
-                this.outputUrl = '';
-                this.inputImage = null;
-                return;
-            }
-
-            if(!this.isFileImage(this.inputImage)) {
-                this.inputUrl = '';
-                this.outputUrl = '';
-                this.inputImage = null;
-                alert('Invalid File');
-                return;
-            }
-            
-            this.inputUrl = URL.createObjectURL(this.inputImage);
-            return;
+        onImageCleared() {
+            this.outputUrl = '';
+            this.inputImage = null;
         },
 
         uploadImage() {
@@ -91,37 +59,6 @@ export default {
                 this.outputUrl = '';
                 console.log(error);
             });
-        },
-
-        downloadImage() {
-            if(this.outputUrl == '') { return; }
-
-            this.$axios.get(
-                this.outputUrl,
-                { responseType: 'blob' }
-            ).then((response) => {
-                var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-                var fileLink = document.createElement('a');
-
-                fileLink.href = fileURL;
-                fileLink.setAttribute('download', this.inputImage.name);
-                document.body.appendChild(fileLink);
-
-                fileLink.click();
-            }).catch((error) => {
-                console.log(error);
-            });
-        },
-
-        isFileImage(file) {
-            const acceptedImageTypes = ['image/jpeg', 'image/png'];
-            return file && acceptedImageTypes.includes(file['type'])
-        },
-
-        cutName(name, length) {
-            return (name.length > length) ?
-                name.substring(0, length - 3) + '...' :
-                name;
         },
     }
 }
