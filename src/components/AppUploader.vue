@@ -53,18 +53,20 @@ export default {
 
             if(!this.inputImage) {
                 this.inputUrl = '';
+                this.outputUrl = '';
                 this.inputImage = null;
                 return;
             }
 
-            if(this.isFileImage(this.inputImage)) {
-                this.inputUrl = URL.createObjectURL(this.inputImage);
+            if(!this.isFileImage(this.inputImage)) {
+                this.inputUrl = '';
+                this.outputUrl = '';
+                this.inputImage = null;
+                alert('Invalid File');
                 return;
             }
-
-            this.inputUrl = '';
-            this.inputImage = null;
-            alert('Invalid File');
+            
+            this.inputUrl = URL.createObjectURL(this.inputImage);
             return;
         },
 
@@ -74,8 +76,8 @@ export default {
             let formData = new FormData();
             formData.append('image', this.inputImage);
 
-            this.$http.post(
-                'http://localhost:8000/api/inference/',
+            this.$axios.post(
+                process.env.VUE_APP_API_URL + '/inference/',
                 formData,
                 { headers: { 'Content-Type': 'multipart/form-data' }},
             ).then((response) => {
@@ -87,7 +89,9 @@ export default {
         },
 
         downloadImage() {
-            this.$http.get(
+            if(this.outputUrl == '') { return; }
+
+            this.$axios.get(
                 this.outputUrl,
                 { responseType: 'blob' }
             ).then((response) => {
