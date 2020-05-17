@@ -1,16 +1,16 @@
 <template>
     <div id="app">
-        <DeblurPage></DeblurPage>
+        <deblur-page></deblur-page>
     </div>
 </template>
 
 <script>
-    import DeblurPage from './components/DeblurPage'
+import DeblurPage from './components/DeblurPage'
 
-    export default {
-        name: 'App',
-        components: {
-            DeblurPage,
-        },
+export default {
+    name: 'app',
+    components: {
+        DeblurPage,
     }
+}
 </script>
