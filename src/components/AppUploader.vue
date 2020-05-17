@@ -82,6 +82,7 @@ export default {
                 { headers: { 'Content-Type': 'multipart/form-data' }},
             ).then((response) => {
                 this.outputUrl = response.data.output_image;
+                this.$emit('upload', response.data)
             }).catch((error) => {
                 this.outputUrl = '';
                 console.log(error);
