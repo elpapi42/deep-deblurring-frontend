@@ -21,53 +21,50 @@ export default {
 
     data: function () {
         return {
-            image: null,
             url: '',
         }
     },
 
     methods: {
         handleImage() {
-            this.image = this.$refs.image.files[0];
+            let image = this.$refs.image.files[0];
 
-            if(!this.image) {
+            if(!image) {
                 this.url = '';
-                this.image = null;
                 this.$emit('error', 'File Discharged')
                 return;
             }
 
-            if(!this.isFileImage(this.image)) {
+            if(!this.isImage(image)) {
                 this.url = '';
-                this.image = null;
                 this.$emit('error', 'Invalid File Type');
                 return;
             }
-            
-            this.url = URL.createObjectURL(this.image);
-            this.uploadImage()
-            this.$emit('load', this.image.name)
+
+            this.url = URL.createObjectURL(image);
+            this.$emit('load')
+            this.uploadImage(image)
         },
 
-        uploadImage() {
-            if(!this.image) { return; }
-
+        uploadImage(image) {
             let formData = new FormData();
-            formData.append('image', this.image);
+            formData.append('image', image);
 
             this.$axios.post(
                 process.env.VUE_APP_API_URL + '/inference/',
                 formData,
                 { headers: { 'Content-Type': 'multipart/form-data' }},
             ).then((response) => {
-                this.$emit('upload', response.data)
+                let data = response.data;
+                data.image_name = image.name;
+                this.$emit('upload', data);
             }).catch(() => {
                 this.$emit('error', 'There was an Error on the Server');
                 this.url = '';
             });
         },
 
-        isFileImage(file) {
+        isImage(file) {
             const acceptedImageTypes = ['image/jpeg', 'image/png'];
             return file && acceptedImageTypes.includes(file['type'])
         },

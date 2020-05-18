@@ -35,15 +35,15 @@ export default {
             this.notify(error, 'red');
         },
 
-        onLoad(name) {
+        onLoad() {
             this.notify('Uploading Image to the Server', 'green');
-            this.imageName = name
         },
 
         onUpload(response) {
-            this.notify('Image Processed Successfully, Click the image for Download', 'green');
             this.outputUrl = response.output_image;
-            this.$emit('upload', response)
+            this.imageName = response.image_name;
+            this.$emit('upload', { url: this.outputUrl, name: this.imageName })
+            this.notify('Image Processed Successfully, Click the image for Download', 'green');
         },
 
         notify(message, color) {
