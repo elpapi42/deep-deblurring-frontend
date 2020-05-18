@@ -1,17 +1,15 @@
 <template>
-    <div @drop='drop' @dragover='dragover' class='w-full h-full'>
-        <label>
-            <app-image :src='url'/>
-            <input
-                type="file"
-                id='image'
-                ref='image'
-                accept='.jpg,.jpeg,.png'
-                @change='handleImage'
-                class='hidden'
-            />
-        </label>
-    </div>
+    <label @drop='drop' @dragover='dragover' class='w-full h-full'>
+        <app-image :src='url'/>
+        <input
+            type="file"
+            id='image'
+            ref='image'
+            accept='.jpg,.jpeg,.png'
+            @change='handleImage'
+            class='hidden'
+        />
+    </label>
 </template>
 
 <script>
@@ -35,15 +33,14 @@ export default {
             if(!this.image) {
                 this.url = '';
                 this.image = null;
-                this.$emit('error', 'file discharged')
+                this.$emit('error', 'File Discharged')
                 return;
             }
 
             if(!this.isFileImage(this.image)) {
                 this.url = '';
                 this.image = null;
-                this.$emit('error', 'invalid file')
-                alert('Invalid File');
+                this.$emit('error', 'Invalid File Type');
                 return;
             }
             

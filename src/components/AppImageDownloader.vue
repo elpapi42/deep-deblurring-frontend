@@ -1,7 +1,7 @@
 <template>
     <label>
-        <app-image :src='url'/>
-        <button class='hidden' @click='downloadImage()'/>
+        <app-image :src='src'/>
+        <button class='hidden' @click='downloadImage'/>
     </label>
 </template>
 
@@ -12,14 +12,14 @@ export default {
     name: 'AppImageDownloader',
     components: { AppImage },
 
-    props: { url: String },
+    props: { src: String },
 
     methods: {
         downloadImage() {
-            if(this.url == '') { return; }
+            if(this.src == '') { return; }
 
             this.$axios.get(
-                this.url,
+                this.src,
                 { responseType: 'blob' }
             ).then((response) => {
                 var fileURL = window.URL.createObjectURL(new Blob([response.data]));

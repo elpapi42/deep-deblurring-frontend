@@ -4,15 +4,8 @@
             <app-image-picker @load='onImageSelected' @error='onImageCleared'/>
         </div>
 
-        <el-button 
-            type="primary"
-            icon="el-icon-upload"
-            circle
-            @click='uploadImage'
-        ></el-button>
-
         <div class='w-14 sm:w-22 md:w-48 lg:w-52 xl:w-64 h-14 sm:h-22 md:h-48 lg:h-52 xl:h-64'>
-            <app-image-downloader :url='outputUrl'/>
+            <app-image-downloader :src='outputUrl'/>
         </div>
     </div>
 </template>
@@ -32,19 +25,30 @@ export default {
         }
     },
 
+    computed: {
+        stateIcon: function() {
+            return 'wating';
+        }
+    },
+
     methods: {
         onImageSelected(image) {
             this.inputImage = image;
+            this.uploadImage()
         },
 
-        onImageCleared() {
+        onImageCleared(error) {
             this.outputUrl = '';
             this.inputImage = null;
+            if(error) {
+                this.notify(error, 'red');
+            }
         },
 
         uploadImage() {
             if(!this.inputImage) { return; }
 
+            this.notify('Uploading Image to the Server', 'green');
             let formData = new FormData();
             formData.append('image', this.inputImage);
 
@@ -55,9 +59,19 @@ export default {
             ).then((response) => {
                 this.outputUrl = response.data.output_image;
                 this.$emit('upload', response.data)
+                this.notify('Image Processed Successfully, Click the image for Download', 'green');
             }).catch((error) => {
-                this.outputUrl = '';
+                this.onImageCleared();
+                this.notify('There was an Error on the Server', 'red');
                 console.log(error);
+            });
+        },
+
+        notify(message, color) {
+            const h = this.$createElement;
+
+            this.$notify({
+                message: h('i', { style: 'color: ' + color }, message)
             });
         },
     }
