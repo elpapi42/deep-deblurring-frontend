@@ -16,7 +16,7 @@
 import AppImage from './AppImage'
 
 export default {
-    name: 'AppImagePicker',
+    name: 'ImageUploader',
     components: { AppImage },
 
     data: function () {

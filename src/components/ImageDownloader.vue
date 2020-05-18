@@ -9,7 +9,7 @@
 import AppImage from './AppImage'
 
 export default {
-    name: 'AppImageDownloader',
+    name: 'ImageDownloader',
     components: { AppImage },
 
     props: { src: String },
