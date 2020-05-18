@@ -15,7 +15,7 @@ import AppImagePicker from './AppImagePicker'
 import AppImageDownloader from './AppImageDownloader'
 
 export default {
-    name: 'AppUploader',
+    name: 'AppProcessor',
     components: { AppImagePicker, AppImageDownloader },
 
     data: function () {

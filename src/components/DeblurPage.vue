@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-row w-screen h-screen">
         <div class='flex w-full h-full bg-gray-200 items-center justify-center'>
-            <app-uploader @upload='newUpload'/>
+            <app-processor @upload='newUpload'/>
         </div>
         <!--
         <div class='flex w-1/5 h-full bg-gray-400 items-center justify-center'>
@@ -11,14 +11,14 @@
 </template>
 
 <script>
-    import AppUploader from './AppUploader';
+    import AppProcessor from './AppProcessor';
     //import AppRecent from './AppRecent';
 
     export default {
         name: 'DeblurPage',
 
         components: {
-            AppUploader,
+            AppProcessor,
             //AppRecent,
         },
 
