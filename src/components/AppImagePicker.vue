@@ -45,8 +45,26 @@ export default {
             }
             
             this.url = URL.createObjectURL(this.image);
-            this.$emit('load', this.image)
-            return;
+            this.uploadImage()
+            this.$emit('load', this.image.name)
+        },
+
+        uploadImage() {
+            if(!this.image) { return; }
+
+            let formData = new FormData();
+            formData.append('image', this.image);
+
+            this.$axios.post(
+                process.env.VUE_APP_API_URL + '/inference/',
+                formData,
+                { headers: { 'Content-Type': 'multipart/form-data' }},
+            ).then((response) => {
+                this.$emit('upload', response.data)
+            }).catch(() => {
+                this.$emit('error', 'There was an Error on the Server');
+                this.url = '';
+            });
         },
 
         isFileImage(file) {

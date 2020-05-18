@@ -1,7 +1,7 @@
 <template>
     <div class='flex flex-row bg-gray-500 border-8 border-gray-500 rounded items-center justify-center'>
         <div class='w-14 sm:w-22 md:w-48 lg:w-52 xl:w-64 h-14 sm:h-22 md:h-48 lg:h-52 xl:h-64'>
-            <app-image-picker @load='onImageSelected' @error='onImageCleared'/>
+            <app-image-picker @load='onLoad' @error='onError' @upload='onUpload'/>
         </div>
 
         <div class='w-14 sm:w-22 md:w-48 lg:w-52 xl:w-64 h-14 sm:h-22 md:h-48 lg:h-52 xl:h-64'>
@@ -20,51 +20,30 @@ export default {
 
     data: function () {
         return {
-            inputImage: null,
             outputUrl: '',
+            imageName: '',
         }
     },
 
     computed: {
-        stateIcon: function() {
-            return 'wating';
-        }
     },
 
     methods: {
-        onImageSelected(image) {
-            this.inputImage = image;
-            this.uploadImage()
-        },
-
-        onImageCleared(error) {
+        onError(error) {
             this.outputUrl = '';
-            this.inputImage = null;
-            if(error) {
-                this.notify(error, 'red');
-            }
+            this.imageName = '';
+            this.notify(error, 'red');
         },
 
-        uploadImage() {
-            if(!this.inputImage) { return; }
-
+        onLoad(name) {
             this.notify('Uploading Image to the Server', 'green');
-            let formData = new FormData();
-            formData.append('image', this.inputImage);
+            this.imageName = name
+        },
 
-            this.$axios.post(
-                process.env.VUE_APP_API_URL + '/inference/',
-                formData,
-                { headers: { 'Content-Type': 'multipart/form-data' }},
-            ).then((response) => {
-                this.outputUrl = response.data.output_image;
-                this.$emit('upload', response.data)
-                this.notify('Image Processed Successfully, Click the image for Download', 'green');
-            }).catch((error) => {
-                this.onImageCleared();
-                this.notify('There was an Error on the Server', 'red');
-                console.log(error);
-            });
+        onUpload(response) {
+            this.notify('Image Processed Successfully, Click the image for Download', 'green');
+            this.outputUrl = response.output_image;
+            this.$emit('upload', response)
         },
 
         notify(message, color) {
