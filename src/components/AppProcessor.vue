@@ -5,7 +5,7 @@
         </div>
 
         <div class='w-14 sm:w-22 md:w-48 lg:w-52 xl:w-64 h-14 sm:h-22 md:h-48 lg:h-52 xl:h-64'>
-            <image-downloader :src='outputUrl'/>
+            <image-downloader :src='outputUrl' :name='imageName'/>
         </div>
     </div>
 </template>

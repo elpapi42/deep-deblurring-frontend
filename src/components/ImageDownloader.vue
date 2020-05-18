@@ -12,7 +12,7 @@ export default {
     name: 'ImageDownloader',
     components: { AppImage },
 
-    props: { src: String },
+    props: { src: String, name: String },
 
     methods: {
         downloadImage() {
@@ -26,7 +26,7 @@ export default {
                 var fileLink = document.createElement('a');
 
                 fileLink.href = fileURL;
-                fileLink.setAttribute('download', 'deblurred.jpg');
+                fileLink.setAttribute('download', this.name);
                 document.body.appendChild(fileLink);
 
                 fileLink.click();
