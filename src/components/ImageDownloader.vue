@@ -1,7 +1,18 @@
 <template>
     <label>
-        <app-image :src='src'/>
-        <button class='hidden' @click='downloadImage'/>
+        <div v-if='!loading' class='w-full h-full'>
+            <app-image :src='src'/>
+            <button class='hidden' @click='downloadImage'/>
+        </div>
+        <div v-else class="el-loading-parent--relative w-full h-full">
+            <div class="el-loading-mask bg-gray-400" style="">
+                <div class="flex el-loading-spinner justify-center">
+                    <svg viewBox="25 25 50 50" class="circular">
+                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
     </label>
 </template>
 
@@ -12,7 +23,14 @@ export default {
     name: 'ImageDownloader',
     components: { AppImage },
 
-    props: { src: String, name: String },
+    props: { 
+        src: String,
+        name: String,
+        loading: {
+            type: Boolean,
+            default: false
+        },
+    },
 
     methods: {
         downloadImage() {
