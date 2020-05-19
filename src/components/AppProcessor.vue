@@ -46,7 +46,7 @@ export default {
             this.outputUrl = response.output_image;
             this.imageName = response.image_name;
             this.loading = false;
-            this.$emit('upload', { url: this.outputUrl, name: this.imageName })
+            this.$emit('upload', { url: this.outputUrl, name: this.imageName, uuid: response.resource_id })
             this.notify('Image Processed Successfully, Click the image for Download', 'green');
         },
 
