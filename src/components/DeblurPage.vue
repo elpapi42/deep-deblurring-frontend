@@ -6,13 +6,13 @@
             <h1 class='text-3xl text-center'>Deep\PNG</h1>
         </div>
 
-        <div class='hidden lg:block col-start-1 bg-gray-800 rounded p-4'>
+        <div class='hidden md:block col-start-1 bg-gray-800 rounded p-4'>
             <img class='w-full h-full object-cover rounded' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1589559567/static/placeholder.png' alt='img'>
         </div>
 
         <!--Images Box-->
-        <div class='sm:col-span-2 md:col-start-1 md:col-end-5 lg:col-start-2 lg:col-end-4 bg-gray-800 rounded p-4'>
-            <img class='w-full h-full object-cover rounded' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1589559567/static/placeholder.png' alt='img'>
+        <div class='sm:col-span-2 md:col-start-2 md:col-end-5 lg:col-start-2 lg:col-end-4'>
+            <app-processor></app-processor>
         </div>
 
         <div class='hidden lg:block bg-gray-800 rounded p-4'>
@@ -49,14 +49,14 @@
 </template>
 
 <script>
-//import AppProcessor from './AppProcessor';
+import AppProcessor from './AppProcessor';
 //import AppRecent from './AppRecent';
 
 export default {
     name: 'DeblurPage',
 
     components: {
-        //AppProcessor,
+        AppProcessor,
         //AppRecent,
     },
 
