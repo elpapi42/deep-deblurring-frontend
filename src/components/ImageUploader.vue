@@ -1,5 +1,5 @@
 <template>
-    <label @drop='drop' @dragover='dragover' class='w-full h-full'>
+    <label @drop='drop' @dragover='dragover' class=''>
         <app-image :src='url'/>
         <input
             type="file"
