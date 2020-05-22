@@ -1,9 +1,9 @@
 <template>
-    <div class='w-full h-full'>
+    <div class=''>
         <img 
             :src='url'
             @error='onBrokenLink'
-            class='w-full h-full rounded object-cover'
+            class='rounded object-cover'
         />
     </div>
 </template>

@@ -1,13 +1,14 @@
 <template>
-<div class='m-1 sm:mx-2 md:mx-4'>
+<div class='m-1'>
+    <div class='h-64'>
+        <div class=''>
+            <app-processor></app-processor>
+        </div>
+    </div>
     <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full h-full'>
         <!--Heading-->
-        <div class='sm:col-span-2 md:col-start-2 md:col-end-4 bg-gray-500 rounded p-4'>
-            <h1 class='text-3xl text-center'>Deep\PNG</h1>
-        </div>
-
-        <div class='hidden md:block col-start-1 bg-gray-800 rounded p-4'>
-            <img class='w-full h-full object-cover rounded' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1589559567/static/placeholder.png' alt='img'>
+        <div class='sm:col-span-2 md:col-start-2 md:col-end-4 bg-gray-500 rounded p-4 h-16'>
+            <h1 class='text-base text-center'>Deep\PNG</h1>
         </div>
 
         <!--Images Box-->
@@ -15,17 +16,11 @@
             <app-processor></app-processor>
         </div>
 
-        <div class='hidden lg:block bg-gray-800 rounded p-4'>
-            <img class='w-full h-full object-cover rounded' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1589559567/static/placeholder.png' alt='img'>
-        </div>
-
-        <div class='bg-gray-500 rounded p-4'>
+        <div class='col-start-1 bg-gray-500 rounded p-4'>
             <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
         </div>
 
         <div class='md:col-span-1 bg-gray-500 rounded p-4'>
-            <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
-            <br>
             <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
         </div>
 
@@ -35,8 +30,6 @@
         </div>
 
         <div class='sm:col-span-2 bg-gray-500 rounded p-4'>
-            <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
-            <br>
             <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
         </div>
 
