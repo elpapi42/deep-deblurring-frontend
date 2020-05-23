@@ -1,9 +1,9 @@
 <template>
-    <div class='flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 max-w-screen-sm w-full justify-center'>
-        <div class='h-64 sm:h-full w-full sm:w-64'>
+    <div class='flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 max-w-screen-md w-full justify-center'>
+        <div class='h-64 sm:h-full w-full'>
             <image-uploader @load='onLoad' @error='onError' @upload='onUpload'/>
         </div>
-        <div class='h-64 sm:h-full w-full sm:w-64'>
+        <div class='h-64 sm:h-full w-full'>
             <image-downloader :src='outputUrl' :name='imageName' :loading='loading'/>
         </div>
     </div>
