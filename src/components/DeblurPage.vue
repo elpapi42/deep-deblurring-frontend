@@ -2,11 +2,11 @@
 <div class='flex flex-col space-y-4 my-1 mx-4'>
     <!--Heading-->
     <div class='self-center w-full'>
-        <h1 class='text-3xl text-center'>Deep\PNG</h1>
+        <h1 class='text-2xl text-center'>Deep\PNG</h1>
     </div>
 
     <!--Images Box-->
-    <div class='flex justify-center h-64'>
+    <div class='flex justify-center h-full sm:h-64'>
         <app-processor></app-processor>
     </div>
 
