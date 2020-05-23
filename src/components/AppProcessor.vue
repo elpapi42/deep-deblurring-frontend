@@ -1,12 +1,7 @@
 <template>
-    <div class='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-        <div class=''>
-            <image-uploader @load='onLoad' @error='onError' @upload='onUpload'/>
-        </div>
-
-        <div class=''>
-            <image-downloader :src='outputUrl' :name='imageName' :loading='loading'/>
-        </div>
+    <div class='grid grid-cols-1 sm:grid-cols-2 gap-2 h-full'>
+        <image-uploader @load='onLoad' @error='onError' @upload='onUpload'/>
+        <image-downloader :src='outputUrl' :name='imageName' :loading='loading'/>
     </div>
 </template>
 

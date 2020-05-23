@@ -1,10 +1,5 @@
 <template>
 <div class='m-1'>
-    <div class='h-64'>
-        <div class=''>
-            <app-processor></app-processor>
-        </div>
-    </div>
     <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full h-full'>
         <!--Heading-->
         <div class='sm:col-span-2 md:col-start-2 md:col-end-4 bg-gray-500 rounded p-4 h-16'>
@@ -12,7 +7,7 @@
         </div>
 
         <!--Images Box-->
-        <div class='sm:col-span-2 md:col-start-2 md:col-end-5 lg:col-start-2 lg:col-end-4'>
+        <div class='sm:col-span-2 md:col-start-2 md:col-end-5 lg:col-start-2 lg:col-end-4 h-64'>
             <app-processor></app-processor>
         </div>
 

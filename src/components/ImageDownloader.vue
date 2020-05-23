@@ -1,10 +1,10 @@
 <template>
-    <label>
-        <div v-if='!loading' class=''>
+    <label class='h-full'>
+        <div v-if='!loading' class='h-full'>
             <app-image :src='src'/>
             <button class='hidden' @click='downloadImage'/>
         </div>
-        <div v-else class="el-loading-parent--relative w-full h-full">
+        <div v-else class="el-loading-parent--relative h-full">
             <div class="el-loading-mask bg-gray-400" style="">
                 <div class="flex el-loading-spinner justify-center">
                     <svg viewBox="25 25 50 50" class="circular">
