@@ -3,6 +3,7 @@
         :src='url'
         @error='onBrokenLink'
         class='rounded object-cover h-full w-full'
+        alt='image'
     />
 </template>
 
