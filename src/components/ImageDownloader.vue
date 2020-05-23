@@ -1,6 +1,6 @@
 <template>
-    <label class='h-full w-full'>
-        <div v-if='!loading' class='h-full w-full'>
+    <label class='h-full'>
+        <div v-if='!loading' class='h-full'>
             <app-image :src='src'/>
             <button class='hidden' @click='downloadImage'/>
         </div>
