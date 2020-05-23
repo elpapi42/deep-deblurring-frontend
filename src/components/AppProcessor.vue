@@ -1,5 +1,5 @@
 <template>
-    <div class='flex flex-col sm:flex-row h-full max-w-screen-sm sm:space-x-4 space-y-4 sm:space-y-0'>
+    <div class='flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 max-w-screen-sm w-full justify-center'>
         <div class='h-64 sm:h-full w-full sm:w-64'>
             <image-uploader @load='onLoad' @error='onError' @upload='onUpload'/>
         </div>
