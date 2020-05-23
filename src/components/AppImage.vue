@@ -1,11 +1,9 @@
 <template>
-    <div class='w-full h-full'>
-        <img 
-            :src='url'
-            @error='onBrokenLink'
-            class='w-full h-full rounded object-cover'
-        />
-    </div>
+    <img 
+        :src='url'
+        @error='onBrokenLink'
+        class='rounded object-cover h-full w-full'
+    />
 </template>
 
 <script>

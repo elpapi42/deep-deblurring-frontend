@@ -1,36 +1,65 @@
 <template>
-    <div class="flex flex-row w-screen h-screen">
-        <div class='w-40 h-full bg-gray-300 items-center justify-center'>
-            <app-recent :recents='recentUploads'/>
-        </div>
-        <div class='flex w-full h-full bg-gray-200 items-center justify-center'>
-            <app-processor @upload='onUpload'/>
+<div class='flex flex-col space-y-4 my-1 mx-4'>
+    <!--Heading-->
+    <div class='self-center w-full'>
+        <h1 class='text-2xl text-center'>Deep\PNG</h1>
+    </div>
+
+    <!--Images Box-->
+    <div class='flex justify-center h-full sm:h-64'>
+        <app-processor></app-processor>
+    </div>
+
+    <div class='flex justify-center'>
+        <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-screen-lg'>
+            <div class='md:col-span-2 bg-gray-500 rounded p-4'>
+                <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
+            </div>
+
+            <!--Recents-->
+            <div class='sm:row-span-2 md:row-span-3 bg-gray-800 rounded p-4'>
+                <img class='w-full h-full object-cover rounded' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1589559567/static/placeholder.png' alt='img'>
+            </div>
+
+            <div class='md:col-span-2 bg-gray-500 rounded p-4'>
+                <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
+            </div>
+
+            <div class='sm:col-span-2 bg-gray-500 rounded p-4'>
+                <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
+            </div>
+
+            <!--Footing-->
+            <div class='sm:col-span-2 md:col-span-3 bg-gray-500 rounded p-4'>
+                <h1 class='text-xl text-center'>DeepPNG All Rights Reserved</h1>
+            </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
-    import AppProcessor from './AppProcessor';
-    import AppRecent from './AppRecent';
+import AppProcessor from './AppProcessor';
+//import AppRecent from './AppRecent';
 
-    export default {
-        name: 'DeblurPage',
+export default {
+    name: 'DeblurPage',
 
-        components: {
-            AppProcessor,
-            AppRecent,
+    components: {
+        AppProcessor,
+        //AppRecent,
+    },
+
+    data: function () {
+        return {
+            recentUploads: [],
+        }
+    },
+
+    methods: {
+        onUpload(data) {
+            this.recentUploads.push(data);
         },
-
-        data: function () {
-            return {
-                recentUploads: [],
-            }
-        },
-
-        methods: {
-            onUpload(data) {
-                this.recentUploads.push(data);
-            },
-        },
-    }
+    },
+}
 </script>
