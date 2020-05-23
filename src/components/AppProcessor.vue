@@ -1,10 +1,9 @@
 <template>
-    <div class='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-        <div class=''>
+    <div class='flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 max-w-screen-md w-full justify-center'>
+        <div class='h-64 sm:h-full w-full'>
             <image-uploader @load='onLoad' @error='onError' @upload='onUpload'/>
         </div>
-
-        <div class=''>
+        <div class='h-64 sm:h-full w-full'>
             <image-downloader :src='outputUrl' :name='imageName' :loading='loading'/>
         </div>
     </div>
