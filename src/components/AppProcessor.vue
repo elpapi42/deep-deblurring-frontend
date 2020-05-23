@@ -1,5 +1,5 @@
 <template>
-    <div class='grid grid-cols-1 sm:grid-cols-2 gap-2 h-full'>
+    <div class='flex h-full w-full'>
         <image-uploader @load='onLoad' @error='onError' @upload='onUpload'/>
         <image-downloader :src='outputUrl' :name='imageName' :loading='loading'/>
     </div>

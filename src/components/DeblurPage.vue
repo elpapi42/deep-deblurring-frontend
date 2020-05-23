@@ -7,7 +7,7 @@
         </div>
 
         <!--Images Box-->
-        <div class='sm:col-span-2 md:col-start-2 md:col-end-5 lg:col-start-2 lg:col-end-4 h-64'>
+        <div class='sm:col-span-2 md:col-start-2 md:col-end-5 lg:col-start-2 lg:col-end-4 h-64 w-full'>
             <app-processor></app-processor>
         </div>
 

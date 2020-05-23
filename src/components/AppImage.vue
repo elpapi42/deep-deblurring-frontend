@@ -2,7 +2,7 @@
     <img 
         :src='url'
         @error='onBrokenLink'
-        class='rounded object-cover h-full'
+        class='rounded object-cover h-full w-full'
     />
 </template>
 
