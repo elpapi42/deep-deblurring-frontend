@@ -6,27 +6,27 @@
     </header>
 
     <!--Images Box-->
-    <main class='flex justify-center h-full sm:h-64'>
-        <app-processor></app-processor>
+    <main class='flex justify-center h-full sm:h-64 m-2'>
+        <app-processor v-on:upload='onUpload'></app-processor>
     </main>
 
     <!-- body -->
-    <main class='flex justify-center'>
-        <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-screen-lg'>
-            <div class='md:col-span-2'>
+    <main class='flex justify-center m-2'>
+        <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-screen-lg'>
+            <div class='sm:col-span-2 md:col-span-1'>
                 <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
             </div>
 
             <!--Recents-->
-            <div class='sm:row-span-2 md:row-span-3'>
-                <img class='w-full h-full object-cover rounded' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1589559567/static/placeholder.png' alt='img'>
+            <div class='sm:col-span-2'>
+                <app-recent :recents='recentUploads'></app-recent>
             </div>
 
             <div class=''>
                 <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.  Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
             </div>
 
-            <div class=''>
+            <div class='sm:col-span-1 md:col-span-2'>
                 <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
             </div>
         </div>
@@ -41,14 +41,14 @@
 
 <script>
 import AppProcessor from './AppProcessor';
-//import AppRecent from './AppRecent';
+import AppRecent from './AppRecent';
 
 export default {
     name: 'DeblurPage',
 
     components: {
         AppProcessor,
-        //AppRecent,
+        AppRecent,
     },
 
     data: function () {
