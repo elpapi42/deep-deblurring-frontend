@@ -1,7 +1,7 @@
 <template>
 <div class='flex flex-col space-y-4'>
     <!--Heading-->
-    <header class='flex justify-center w-full mt-2'>
+    <header class='bg-gray-500 justify-center'>
         <h1 class='text-2xl text-center p-2'>Deep\PNG</h1>
     </header>
 
