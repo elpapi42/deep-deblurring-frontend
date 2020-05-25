@@ -22,12 +22,16 @@
                 <app-recent :recents='recentUploads'></app-recent>
             </div>
 
-            <div class=''>
-                <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.  Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
+            <div class='md:row-span-2'>
+                <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
             </div>
 
             <div class='sm:col-span-1 md:col-span-2'>
                 <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
+            </div>
+
+            <div class='sm:col-span-2'>
+                <app-stack></app-stack>
             </div>
         </div>
     </main>
@@ -42,6 +46,7 @@
 <script>
 import AppProcessor from './AppProcessor';
 import AppRecent from './AppRecent';
+import AppStack from './AppStack';
 
 export default {
     name: 'DeblurPage',
@@ -49,6 +54,7 @@ export default {
     components: {
         AppProcessor,
         AppRecent,
+        AppStack,
     },
 
     data: function () {
