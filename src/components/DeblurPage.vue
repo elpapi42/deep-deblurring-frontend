@@ -65,7 +65,7 @@ export default {
 
     methods: {
         onUpload(data) {
-            this.recentUploads.push(data);
+            this.recentUploads.splice(0, 0, data);
         },
     },
 }
