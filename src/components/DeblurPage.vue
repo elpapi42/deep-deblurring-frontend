@@ -23,19 +23,15 @@
             </div>
 
             <div class='md:row-span-2'>
-                <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.  Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
+                <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
             </div>
 
             <div class='sm:col-span-1 md:col-span-2'>
                 <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
             </div>
 
-            <div class='sm:col-span-2 grid grid-rows-1 grid-flow-col gap-4'>
-                <img class='self-center' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1590362940/static/tensorflow_256_ytah6b.png' alt='tensorflow'>
-                <img class='self-center' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1590362940/static/flask_256_hqrgdx.png' alt='flask'>
-                <img class='self-center' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1590362940/static/vue_256_iwvn8o.png' alt='vue'>
-                <img class='self-center' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1590362940/static/docker_256_qju3wr.png' alt='docker'>
-                <img class='self-center' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1590362940/static/heroku_256_b10qvb.png' alt='heroku'>
+            <div class='sm:col-span-2'>
+                <app-stack></app-stack>
             </div>
         </div>
     </main>
@@ -50,6 +46,7 @@
 <script>
 import AppProcessor from './AppProcessor';
 import AppRecent from './AppRecent';
+import AppStack from './AppStack';
 
 export default {
     name: 'DeblurPage',
@@ -57,6 +54,7 @@ export default {
     components: {
         AppProcessor,
         AppRecent,
+        AppStack,
     },
 
     data: function () {
