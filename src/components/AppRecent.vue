@@ -1,5 +1,5 @@
 <template>
-    <div class='flex flex-col h-full space-y-2 shadow-xl p-2'>
+    <div class='flex flex-col h-full space-y-2 shadow-lg bg-white p-2'>
         <h1 class='text-lg font-medium'>Recent Uploads</h1>
         <div class='flex space-x-2 overflow-x-auto h-full'>
             <div 

@@ -1,5 +1,5 @@
 <template>
-    <div class='grid grid-rows-1 grid-flow-col gap-4 shadow-2xl p-2'>
+    <div class='grid grid-rows-1 grid-flow-col gap-4 shadow-lg bg-white p-2'>
         <img class='self-center' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1590362940/static/tensorflow_256_ytah6b.png' alt='tensorflow'>
         <img class='self-center' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1590362940/static/flask_256_hqrgdx.png' alt='flask'>
         <img class='self-center' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1590362940/static/vue_256_iwvn8o.png' alt='vue'>
