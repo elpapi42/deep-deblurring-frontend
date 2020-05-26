@@ -27,11 +27,16 @@ export default {
     },
 
     mounted() {
+        // Reads the recents images saved in localStorage
         if(localStorage.getItem('recents')) {
            try {
-               this.recents = JSON.parse(localStorage.getItem('recents'));
-           } catch {
-               localStorage.removeItem('recents');
+                this.recents = JSON.parse(localStorage.getItem('recents'));
+           } catch { 
+                /*
+                If the json array is corrupted, just remove it
+                It will be rewrited later
+                */
+                localStorage.removeItem('recents');
            }
         }
     },
@@ -54,6 +59,7 @@ export default {
             this.imageName = response.image_name;
             this.loading = false;
 
+            // Inserts the info that will be used later
             this.recents.splice(0, 0, { 
                 url: this.outputUrl,
                 name: this.imageName,
@@ -61,7 +67,11 @@ export default {
                 score: null
             });
 
+            // Writes to localStorage
             localStorage.setItem('recents', JSON.stringify(this.recents));
+
+            // Notifies that a new entry was added to localStorage
+            window.dispatchEvent(new CustomEvent('on-upload-event'));
 
             this.notify('Image Processed Successfully, Click the image for Download', 'green');
         },
