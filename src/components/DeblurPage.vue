@@ -1,33 +1,37 @@
 <template>
-<div class='flex flex-col space-y-4'>
+<div class='flex flex-col space-y-4 bg-gray-100'>
     <!--Heading-->
-    <header class='bg-gray-500 justify-center'>
+    <header class='shadow-md bg-white justify-center'>
         <h1 class='text-2xl text-center p-2'>Deep\PNG</h1>
     </header>
 
     <!--Images Box-->
-    <main class='flex justify-center h-full sm:h-64'>
-        <app-processor></app-processor>
+    <main class='flex justify-center h-full sm:h-64 m-2'>
+        <app-processor v-on:upload='onUpload'></app-processor>
     </main>
 
     <!-- body -->
-    <main class='flex justify-center'>
-        <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-screen-lg'>
-            <div class='md:col-span-2'>
+    <main class='flex justify-center m-2'>
+        <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-screen-lg'>
+            <div class='sm:col-span-2 md:col-span-1'>
                 <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
             </div>
 
             <!--Recents-->
-            <div class='sm:row-span-2 md:row-span-3'>
-                <img class='w-full h-full object-cover rounded' src='https://res.cloudinary.com/deep-deblurring/image/upload/v1589559567/static/placeholder.png' alt='img'>
+            <div class='sm:col-span-2'>
+                <app-recent :recents='recentUploads'></app-recent>
             </div>
 
-            <div class=''>
-                <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.  Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
+            <div class='md:row-span-2'>
+                <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
             </div>
 
-            <div class=''>
+            <div class='sm:col-span-1 md:col-span-2'>
                 <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
+            </div>
+
+            <div class='sm:col-span-2'>
+                <app-stack></app-stack>
             </div>
         </div>
     </main>
@@ -41,14 +45,16 @@
 
 <script>
 import AppProcessor from './AppProcessor';
-//import AppRecent from './AppRecent';
+import AppRecent from './AppRecent';
+import AppStack from './AppStack';
 
 export default {
     name: 'DeblurPage',
 
     components: {
         AppProcessor,
-        //AppRecent,
+        AppRecent,
+        AppStack,
     },
 
     data: function () {
@@ -59,7 +65,7 @@ export default {
 
     methods: {
         onUpload(data) {
-            this.recentUploads.push(data);
+            this.recentUploads.splice(0, 0, data);
         },
     },
 }
