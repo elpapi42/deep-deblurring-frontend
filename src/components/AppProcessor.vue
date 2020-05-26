@@ -22,10 +22,23 @@ export default {
             outputUrl: '',
             imageName: '',
             loading: false,
+            recents: [],
         }
     },
 
-    computed: {
+    mounted() {
+        // Reads the recents images saved in localStorage
+        if(localStorage.getItem('recents')) {
+           try {
+                this.recents = JSON.parse(localStorage.getItem('recents'));
+           } catch { 
+                /*
+                If the json array is corrupted, just remove it
+                It will be rewrited later
+                */
+                localStorage.removeItem('recents');
+           }
+        }
     },
 
     methods: {
@@ -45,7 +58,21 @@ export default {
             this.outputUrl = response.output_image;
             this.imageName = response.image_name;
             this.loading = false;
-            this.$emit('upload', { url: this.outputUrl, name: this.imageName, uuid: response.resource_id })
+
+            // Inserts the info that will be used later
+            this.recents.splice(0, 0, { 
+                url: this.outputUrl,
+                name: this.imageName,
+                uuid: response.resource_id,
+                score: null
+            });
+
+            // Writes to localStorage
+            localStorage.setItem('recents', JSON.stringify(this.recents));
+
+            // Notifies that a new entry was added to localStorage
+            window.dispatchEvent(new CustomEvent('on-upload-event'));
+
             this.notify('Image Processed Successfully, Click the image for Download', 'green');
         },
 

@@ -19,10 +19,33 @@ import RecentsCard from './RecentsCard'
 export default {
     name: 'AppRecent',
 
-    props: ['recents'],
+    components: { RecentsCard },
 
-    components: {
-        RecentsCard,
+    data: function() {
+        return {
+            recents: [],
+        }
+    },
+
+    mounted() {
+        this.readRecents();
+        window.addEventListener('on-upload-event', this.readRecents);
+    },
+
+    methods: {
+        readRecents() {
+            if(localStorage.getItem('recents')) {
+                try {
+                    this.recents = JSON.parse(localStorage.getItem('recents'));
+                } catch { 
+                    /*
+                    If the json array is corrupted, just remove it
+                    It will be rewrited later
+                    */
+                    localStorage.removeItem('recents');
+                }
+            }
+        }
     },
 }
 </script>
