@@ -1,18 +1,7 @@
 <template>
     <label class='h-full w-full'>
-        <div v-if='!loading' class='h-full w-full'>
-            <app-image :src='src'/>
-            <button class='hidden' @click='downloadImage'/>
-        </div>
-        <div v-else class="el-loading-parent--relative h-full w-full">
-            <div class="el-loading-mask bg-gray-400" style="">
-                <div class="flex el-loading-spinner justify-center">
-                    <svg viewBox="25 25 50 50" class="circular">
-                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
-                    </svg>
-                </div>
-            </div>
-        </div>
+        <app-image :src='src'/>
+        <button class='hidden' @click='downloadImage'/>
     </label>
 </template>
 
