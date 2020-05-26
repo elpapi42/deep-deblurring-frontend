@@ -1,7 +1,7 @@
 <template>
-<div class='flex flex-col space-y-4'>
+<div class='flex flex-col space-y-4 bg-gray-100'>
     <!--Heading-->
-    <header class='bg-gray-500 justify-center'>
+    <header class='shadow-md bg-white justify-center'>
         <h1 class='text-2xl text-center p-2'>Deep\PNG</h1>
     </header>
 
@@ -65,7 +65,7 @@ export default {
 
     methods: {
         onUpload(data) {
-            this.recentUploads.push(data);
+            this.recentUploads.splice(0, 0, data);
         },
     },
 }
