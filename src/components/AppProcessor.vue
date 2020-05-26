@@ -22,10 +22,18 @@ export default {
             outputUrl: '',
             imageName: '',
             loading: false,
+            recents: [],
         }
     },
 
-    computed: {
+    mounted() {
+        if(localStorage.getItem('recents')) {
+           try {
+               this.recents = JSON.parse(localStorage.getItem('recents'));
+           } catch {
+               localStorage.removeItem('recents');
+           }
+        }
     },
 
     methods: {
@@ -45,7 +53,16 @@ export default {
             this.outputUrl = response.output_image;
             this.imageName = response.image_name;
             this.loading = false;
-            this.$emit('upload', { url: this.outputUrl, name: this.imageName, uuid: response.resource_id })
+
+            this.recents.splice(0, 0, { 
+                url: this.outputUrl,
+                name: this.imageName,
+                uuid: response.resource_id,
+                score: null
+            });
+
+            localStorage.setItem('recents', JSON.stringify(this.recents));
+
             this.notify('Image Processed Successfully, Click the image for Download', 'green');
         },
 

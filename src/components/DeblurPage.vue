@@ -7,7 +7,7 @@
 
     <!--Images Box-->
     <main class='flex justify-center h-full sm:h-64 m-2'>
-        <app-processor v-on:upload='onUpload'></app-processor>
+        <app-processor></app-processor>
     </main>
 
     <!-- body -->
