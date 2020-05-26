@@ -42,16 +42,14 @@ export default {
     },
 
     methods: {
-        onError(error) {
+        onError() {
             this.outputUrl = '';
             this.imageName = '';
             this.loading = false;
-            this.notify(error, 'red');
         },
 
         onLoad() {
             this.loading = true;
-            this.notify('Uploading Image to the Server', 'green');
         },
 
         onUpload(response) {
@@ -72,16 +70,6 @@ export default {
 
             // Notifies that a new entry was added to localStorage
             window.dispatchEvent(new CustomEvent('on-upload-event'));
-
-            this.notify('Image Processed Successfully, Click the image for Download', 'green');
-        },
-
-        notify(message, color) {
-            const h = this.$createElement;
-
-            this.$notify({
-                message: h('i', { style: 'color: ' + color }, message)
-            });
         },
     }
 }
