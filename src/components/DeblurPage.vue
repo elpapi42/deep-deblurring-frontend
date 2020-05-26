@@ -7,7 +7,7 @@
 
     <!--Images Box-->
     <main class='flex justify-center h-full sm:h-64 m-2'>
-        <app-processor v-on:upload='onUpload'></app-processor>
+        <app-processor></app-processor>
     </main>
 
     <!-- body -->
@@ -19,7 +19,7 @@
 
             <!--Recents-->
             <div class='sm:col-span-2'>
-                <app-recent :recents='recentUploads'></app-recent>
+                <app-recent></app-recent>
             </div>
 
             <div class='md:row-span-2'>
@@ -55,18 +55,6 @@ export default {
         AppProcessor,
         AppRecent,
         AppStack,
-    },
-
-    data: function () {
-        return {
-            recentUploads: [],
-        }
-    },
-
-    methods: {
-        onUpload(data) {
-            this.recentUploads.splice(0, 0, data);
-        },
     },
 }
 </script>
