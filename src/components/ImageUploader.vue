@@ -8,6 +8,7 @@
             accept='.jpg,.jpeg,.png'
             @change='handleImage'
             class='hidden'
+            :disabled='disabled'
         />
     </label>
 </template>
@@ -18,6 +19,8 @@ import AppImage from './AppImage'
 export default {
     name: 'ImageUploader',
     components: { AppImage },
+
+    props: { disabled: Boolean },
 
     data: function () {
         return {
