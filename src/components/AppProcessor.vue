@@ -1,7 +1,7 @@
 <template>
     <div class='flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 max-w-screen-md w-full justify-center'>
         <div class='h-64 sm:h-full w-full shadow-lg'>
-            <image-uploader @load='onLoad' @error='onError' @upload='onUpload'/>
+            <image-uploader :disabled='loading' @load='onLoad' @error='onError' @upload='onUpload'/>
         </div>
         <div class='flex h-64 sm:h-full w-full shadow-lg relative'>
             <image-downloader :src='outputUrl' :name='imageName' class='absolute'/>
