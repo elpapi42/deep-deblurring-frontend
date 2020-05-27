@@ -12,10 +12,11 @@
 <script>
 import ImageUploader from './ImageUploader'
 import ImageDownloader from './ImageDownloader'
+import ScalingSquaresSpinner from 'epic-spinners/src/components/lib/ScalingSquaresSpinner'
 
 export default {
     name: 'AppProcessor',
-    components: { ImageUploader, ImageDownloader },
+    components: { ImageUploader, ImageDownloader, ScalingSquaresSpinner },
 
     data: function () {
         return {
