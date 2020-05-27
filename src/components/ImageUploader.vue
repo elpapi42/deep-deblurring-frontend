@@ -42,7 +42,7 @@ export default {
             }
 
             this.url = URL.createObjectURL(image);
-            this.$emit('load')
+            this.$emit('load', this.url)
             this.uploadImage(image)
         },
 

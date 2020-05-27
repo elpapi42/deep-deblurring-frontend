@@ -3,8 +3,15 @@
         <div class='h-64 sm:h-full w-full shadow-lg'>
             <image-uploader @load='onLoad' @error='onError' @upload='onUpload'/>
         </div>
-        <div class='h-64 sm:h-full w-full shadow-lg'>
-            <image-downloader :src='outputUrl' :name='imageName' :loading='loading'/>
+        <div class='flex h-64 sm:h-full w-full shadow-lg relative'>
+            <image-downloader :src='outputUrl' :name='imageName' class='absolute'/>
+            <div v-if='loading' class='flex items-center justify-center w-full bg-gray-200 bg-opacity-50 z-10'>
+                <scaling-squares-spinner
+                    :animation-duration='1250'
+                    :size='65'
+                    color='#1eb2a6'
+                />
+            </div>
         </div>
     </div>
 </template>
@@ -49,7 +56,8 @@ export default {
             this.loading = false;
         },
 
-        onLoad() {
+        onLoad(url) {
+            this.outputUrl = url;
             this.loading = true;
         },
 
