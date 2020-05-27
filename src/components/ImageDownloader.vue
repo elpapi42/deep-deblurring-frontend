@@ -15,10 +15,6 @@ export default {
     props: { 
         src: String,
         name: String,
-        loading: {
-            type: Boolean,
-            default: false
-        },
     },
 
     methods: {
