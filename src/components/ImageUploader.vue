@@ -44,7 +44,7 @@ export default {
                 return;
             }
 
-            if(image.size > 1024 * 1024) {
+            if(image.size > 10024 * 10024) {
                 this.url = '';
                 this.$emit('error', 'image too big');
                 return;
