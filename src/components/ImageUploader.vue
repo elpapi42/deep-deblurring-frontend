@@ -8,6 +8,7 @@
             accept='.jpg,.jpeg,.png'
             @change='handleImage'
             class='hidden'
+            :disabled='disabled'
         />
     </label>
 </template>
@@ -18,6 +19,8 @@ import AppImage from './AppImage'
 export default {
     name: 'ImageUploader',
     components: { AppImage },
+
+    props: { disabled: Boolean },
 
     data: function () {
         return {
@@ -30,19 +33,25 @@ export default {
             let image = this.$refs.image.files[0];
 
             if(!image) {
-                this.url = '';
-                this.$emit('error', 'File Discharged')
+                this.resetInput();
+                this.$emit('error', 'file unload')
                 return;
             }
 
             if(!this.isImage(image)) {
-                this.url = '';
-                this.$emit('error', 'Invalid File Type');
+                this.resetInput();
+                this.$emit('error', 'invalid file type');
+                return;
+            }
+
+            if(image.size > 1024 * 1024) {
+                this.resetInput();
+                this.$emit('error', 'image too big');
                 return;
             }
 
             this.url = URL.createObjectURL(image);
-            this.$emit('load')
+            this.$emit('load', this.url)
             this.uploadImage(image)
         },
 
@@ -59,8 +68,8 @@ export default {
                 data.image_name = image.name;
                 this.$emit('upload', data);
             }).catch(() => {
-                this.$emit('error', 'There was an Error on the Server');
-                this.url = '';
+                this.$emit('error', 'server error');
+                this.resetInput();
             });
         },
 
@@ -77,6 +86,13 @@ export default {
 
         dragover(event) {
             event.preventDefault();
+        },
+
+        resetInput() {
+            this.url = '';
+            const input = this.$refs.image;
+            input.type = 'text';
+            input.type = 'file';
         },
     }
 }
