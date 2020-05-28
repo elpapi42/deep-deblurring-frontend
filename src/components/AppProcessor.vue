@@ -20,14 +20,14 @@
         </div>
         <div
             class='h-64 sm:h-full w-full rounded border-4 border-dashed p-1'
-            :class='[{ "hover:border-opacity-75": !loading }, getBorderColor(outputStatus)]'
+            :class='[{ "hover:border-opacity-75": !loading && outputUrl != "" }, getBorderColor(outputStatus)]'
         >
             <div class='flex h-full relative'> <!-- This double div is required for padding to work with absolute position -->
                 <image-downloader
                     :src='outputUrl'
                     :name='imageName'
                     class='absolute'
-                    :class='{ "cursor-pointer": !loading }'
+                    :class='{ "cursor-pointer": !loading && outputUrl != "" }'
                 />
                 <div v-if='loading' class='flex items-center justify-center w-full bg-gray-200 bg-opacity-50 z-10'>
                     <scaling-squares-spinner
