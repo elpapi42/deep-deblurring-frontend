@@ -1,9 +1,9 @@
 <template>
     <div class='flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 max-w-screen-md w-full justify-center'>
-        <div class='h-64 sm:h-full w-full shadow-lg' v-bind:class='{ "hover:opacity-75 hover:shadow-2xl": !loading }'>
+        <div class='h-64 sm:h-full w-full rounded border-4 border-dashed border-gray-600' :class='{ "": !true }'>
             <image-uploader :disabled='loading' @load='onLoad' @error='onError' @upload='onUpload'/>
         </div>
-        <div class='flex h-64 sm:h-full w-full shadow-lg relative' v-bind:class='{ "hover:opacity-75 hover:shadow-2xl": !loading }'>
+        <div class='flex h-64 sm:h-full w-full relative rounded border-4 border-dashed border-gray-600' :class='{ "": !true }'>
             <image-downloader :src='outputUrl' :name='imageName' class='absolute'/>
             <div v-if='loading' class='flex items-center justify-center w-full bg-gray-200 bg-opacity-50 z-10'>
                 <scaling-squares-spinner

@@ -34,13 +34,19 @@ export default {
 
             if(!image) {
                 this.url = '';
-                this.$emit('error', 'File Discharged')
+                this.$emit('error', 'file unload')
                 return;
             }
 
             if(!this.isImage(image)) {
                 this.url = '';
-                this.$emit('error', 'Invalid File Type');
+                this.$emit('error', 'invalid file type');
+                return;
+            }
+
+            if(image.size > 1024 * 1024) {
+                this.url = '';
+                this.$emit('error', 'image too big');
                 return;
             }
 
@@ -62,7 +68,7 @@ export default {
                 data.image_name = image.name;
                 this.$emit('upload', data);
             }).catch(() => {
-                this.$emit('error', 'There was an Error on the Server');
+                this.$emit('error', 'server error');
                 this.url = '';
             });
         },
