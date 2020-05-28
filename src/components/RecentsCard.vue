@@ -3,8 +3,7 @@
         <image-downloader 
             :src='data.url' 
             :name='data.name' 
-            class='hover:opacity-75 hover:shadow-2xl'
-            :class='{ "cursor-pointer": !loading }'
+            class='hover:opacity-75 hover:shadow-2xl cursor-pointer'
         />
         <app-rating :rating='data.score' :uid='data.uuid' :size='12'/>
     </div>

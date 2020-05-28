@@ -1,11 +1,28 @@
 <template>
     <div class='flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 max-w-screen-md w-full justify-center'>
-        <div class='h-64 sm:h-full w-full rounded border-4 border-dashed border-gray-600 p-1' :class='{ "": !true }'>
-            <image-uploader :disabled='loading' @load='onLoad' @error='onError' @upload='onUpload' :class='{ "cursor-pointer": !loading }'/>
+        <div
+            class='h-64 sm:h-full w-full rounded border-4 border-dashed border-gray-600 p-1'
+            :class='{ "hover:border-opacity-75": !loading }'
+        >
+            <image-uploader 
+                :disabled='loading'
+                @load='onLoad'
+                @error='onError'
+                @upload='onUpload'
+                :class='{ "cursor-pointer": !loading }'
+            />
         </div>
-        <div class='h-64 sm:h-full w-full rounded border-4 border-dashed border-gray-600 p-1'>
+        <div
+            class='h-64 sm:h-full w-full rounded border-4 border-dashed border-gray-600 p-1'
+            :class='{ "hover:border-opacity-75": !loading }'
+        >
             <div class='flex h-full relative'> <!-- This double div is required for padding to work with absolute position -->
-                <image-downloader :src='outputUrl' :name='imageName' class='absolute' :class='{ "cursor-pointer": !loading }'/>
+                <image-downloader
+                    :src='outputUrl'
+                    :name='imageName'
+                    class='absolute'
+                    :class='{ "cursor-pointer": !loading }'
+                />
                 <div v-if='loading' class='flex items-center justify-center w-full bg-gray-200 bg-opacity-50 z-10'>
                     <scaling-squares-spinner
                         :animation-duration='1250'
