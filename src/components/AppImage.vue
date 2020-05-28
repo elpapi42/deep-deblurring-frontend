@@ -15,7 +15,7 @@
             src: { type: String, required: true },
             placeholder: { 
                 type: String,
-                default: 'https://res.cloudinary.com/deep-deblurring/image/upload/v1589559567/static/placeholder.png'
+                default: 'https://res.cloudinary.com/deep-deblurring/image/upload/v1590626814/static/transparent_placeholder.png'
             },
         },
 

@@ -33,14 +33,20 @@ export default {
             let image = this.$refs.image.files[0];
 
             if(!image) {
-                this.url = '';
-                this.$emit('error', 'File Discharged')
+                this.resetInput();
+                this.$emit('error', 'file unload')
                 return;
             }
 
             if(!this.isImage(image)) {
-                this.url = '';
-                this.$emit('error', 'Invalid File Type');
+                this.resetInput();
+                this.$emit('error', 'invalid file type');
+                return;
+            }
+
+            if(image.size > 1024 * 1024) {
+                this.resetInput();
+                this.$emit('error', 'image too big');
                 return;
             }
 
@@ -62,8 +68,8 @@ export default {
                 data.image_name = image.name;
                 this.$emit('upload', data);
             }).catch(() => {
-                this.$emit('error', 'There was an Error on the Server');
-                this.url = '';
+                this.$emit('error', 'server error');
+                this.resetInput();
             });
         },
 
@@ -80,6 +86,13 @@ export default {
 
         dragover(event) {
             event.preventDefault();
+        },
+
+        resetInput() {
+            this.url = '';
+            const input = this.$refs.image;
+            input.type = 'text';
+            input.type = 'file';
         },
     }
 }

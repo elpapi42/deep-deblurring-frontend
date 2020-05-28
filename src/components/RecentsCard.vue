@@ -1,9 +1,10 @@
 <template>
-    <div 
-        class='flex flex-col space-y-2 pb-2 items-center bg-gray-300 h-full' 
-        v-bind:class='{ "hover:opacity-75 hover:shadow-2xl": !loading }'
-    >   
-        <image-downloader :src='data.url' :name='data.name'/>
+    <div class='flex flex-col space-y-2 pb-2 items-center bg-gray-300 h-full'>
+        <image-downloader 
+            :src='data.url' 
+            :name='data.name' 
+            class='hover:opacity-75 hover:shadow-2xl cursor-pointer'
+        />
         <app-rating :rating='data.score' :uid='data.uuid' :size='12'/>
     </div>
 </template>
