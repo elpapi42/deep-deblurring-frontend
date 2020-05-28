@@ -60,7 +60,7 @@ export default {
             loading: false,
             recents: [],
             inputStatus: 'normal',
-            inputText: 'Drag your images here! no more than 1MB size',
+            inputText: 'Drag your images here! .png over 5MB will be converted to .jpeg',
             outputText: 'Click here for download the resulting images',
             outputStatus: 'normal',
         }
@@ -96,19 +96,25 @@ export default {
                     this.outputStatus = 'normal';
                     break;
                 case 'image too big':
-                    this.inputText = 'Image has a size greater than 1MB';
+                    this.inputText = 'Image has a size greater than 10MB';
                     this.outputText = 'Click here for download the resulting images';
                     this.inputStatus = 'error';
                     this.outputStatus = 'normal';
                     break;
                 case 'server error':
                     this.outputText = 'There was an error by our side, try again later';
-                    this.inputText = 'Drag your images here! no more than 1MB size';
+                    this.inputText = 'Drag your images here! .png over 5MB will be converted to .jpeg';
                     this.inputStatus = 'normal';
                     this.outputStatus = 'error';
                     break;
+                case 'image error':
+                    this.inputText = 'There was an error preprocessing the image. try with other file.';
+                    this.outputText = 'Click here for download the resulting images';
+                    this.inputStatus = 'error';
+                    this.outputStatus = 'normal';
+                    break;
                 default:
-                    this.inputText = 'Drag your images here! no more than 1MB size';
+                    this.inputText = 'Drag your images here! .png over 5MB will be converted to .jpeg';
                     this.outputText = 'Click here for download the resulting images';
                     this.inputStatus = 'normal';
                     this.outputStatus = 'normal';
