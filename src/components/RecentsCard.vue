@@ -1,5 +1,5 @@
 <template>
-    <div class='flex flex-col space-y-2 pb-2 items-center rounded border-2 border-gray-700 h-full'>
+    <div class='flex flex-col space-y-2 pb-2 items-center h-full'>
         <image-downloader 
             :src='data.url' 
             :name='data.name' 

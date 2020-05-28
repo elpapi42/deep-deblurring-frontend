@@ -1,5 +1,5 @@
 <template>
-    <div class='flex flex-col h-full space-y-2 rounded border-4 border-dashed border-gray-700 px-2 py-2'>
+    <div class='flex flex-col h-full space-y-2 rounded border-2 border-gray-700 px-2 py-2'>
         <h1 class='text-lg font-medium'>Recent Uploads</h1>
         <div class='flex space-x-2 overflow-x-auto h-full pb-2'>
             <div 
