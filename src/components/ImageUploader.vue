@@ -15,6 +15,7 @@
 
 <script>
 import AppImage from './AppImage'
+import Compressor from 'compressorjs'
 
 export default {
     name: 'ImageUploader',
@@ -44,15 +45,27 @@ export default {
                 return;
             }
 
-            if(image.size > 1024 * 1024) {
+            if(image.size > 3162 * 3162) {
                 this.resetInput();
                 this.$emit('error', 'image too big');
                 return;
             }
 
-            this.url = URL.createObjectURL(image);
-            this.$emit('load', this.url)
-            this.uploadImage(image)
+            // Compress the image limiting resolution too
+            new Compressor(image, {
+                strict: false,
+                maxWidth: 1024,
+                maxHeight: 1024,
+                success: (resultImage) => {
+                    this.url = URL.createObjectURL(resultImage);
+                    this.$emit('load', this.url)
+                    this.uploadImage(resultImage)
+                },
+                error: (err) => {
+                    console.log(err);
+                    this.$emit('error', 'image error');
+                },
+            });
         },
 
         uploadImage(image) {
