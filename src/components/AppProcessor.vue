@@ -4,13 +4,19 @@
             class='h-64 sm:h-full w-full rounded border-4 border-dashed p-1'
             :class='[{ "hover:border-opacity-75": !loading }, getBorderColor(inputStatus)]'
         >
-            <image-uploader 
-                :disabled='loading'
-                @load='onLoad'
-                @error='onError'
-                @upload='onUpload'
-                :class='{ "cursor-pointer": !loading }'
-            />
+            <div class='flex h-full relative'> <!-- This double div is required for padding to work with absolute position -->
+                <image-uploader 
+                    :disabled='loading'
+                    @load='onLoad'
+                    @error='onError'
+                    @upload='onUpload'
+                    class='absolute'
+                    :class='{ "cursor-pointer": !loading }'
+                />
+                <div class='flex items-center justify-center w-full'>
+                    <h1 v-text='inputText' :class='[ "font-medium", "text-center", getTextColor(inputStatus)]'></h1>
+                </div>
+            </div>
         </div>
         <div
             class='h-64 sm:h-full w-full rounded border-4 border-dashed p-1'
@@ -29,6 +35,9 @@
                         :size='65'
                         color='#38b2ac'
                     />
+                </div>
+                <div v-else class='flex items-center justify-center w-full'>
+                    <h1 v-text='outputText' :class='[ "font-medium", "text-center", getTextColor(outputStatus)]'></h1>
                 </div>
             </div>
         </div>
@@ -51,6 +60,8 @@ export default {
             loading: false,
             recents: [],
             inputStatus: 'normal',
+            inputText: 'Drag your images here! no more than 1MB size',
+            outputText: 'Click here for download the resulting images',
             outputStatus: 'normal',
         }
     },
@@ -79,18 +90,26 @@ export default {
             // Select proper color and info text depending on the error
             switch(message) {
                 case 'invalid file type':
+                    this.inputText = 'Invalid image type, select .jpg or .png images';
+                    this.outputText = 'Click here for download the resulting images';
                     this.inputStatus = 'error';
                     this.outputStatus = 'normal';
                     break;
                 case 'image too big':
+                    this.inputText = 'Image has a size greater than 1MB';
+                    this.outputText = 'Click here for download the resulting images';
                     this.inputStatus = 'error';
                     this.outputStatus = 'normal';
                     break;
                 case 'server error':
+                    this.outputText = 'There was an error by our side, try again later';
+                    this.inputText = 'Drag your images here! no more than 1MB size';
                     this.inputStatus = 'normal';
                     this.outputStatus = 'error';
                     break;
                 default:
+                    this.inputText = 'Drag your images here! no more than 1MB size';
+                    this.outputText = 'Click here for download the resulting images';
                     this.inputStatus = 'normal';
                     this.outputStatus = 'normal';
                     break;
@@ -128,9 +147,18 @@ export default {
         getBorderColor(status) {
             switch(status) {
                 case 'normal': return 'border-gray-700';
-                case 'error': return 'border-red-700';
-                case 'ok': return 'border-green-700';
+                case 'error': return 'border-red-500';
+                case 'ok': return 'border-green-500';
                 case 'loading': return 'border-teal-500';
+            }
+        },
+
+        getTextColor(status) {
+            switch(status) {
+                case 'normal': return 'text-gray-700';
+                case 'error': return 'text-red-500';
+                case 'ok': return 'text-green-500';
+                case 'loading': return 'text-teal-500';
             }
         },
     }
