@@ -1,7 +1,7 @@
 # Deep Deblurring Frontend
 This Vue.js application serves as access point of general public to the image restoration application, setup a minimum viable UI for consume the API defined by [Deep Deblurring Backend](https://github.com/ElPapi42/deep-deblurring-backend).
 
-On the next image we can visualize the general architecture of Deep Deblurring Application (Renamed in this web app as DeepPNG, taking inspiration from [TinyPNG](https://tinypng.com/) and reflexing the Deep Learning foundation of the this project). On the consumers area, we can see this Vue Frontend Application and of course, the 3rd party direct consumers of the API.
+On the next image we can visualize the general architecture of Deep Deblurring Application (Renamed in this web app as DeepPNG, taking inspiration from [TinyPNG](https://tinypng.com/) and reflecting the Deep Learning foundation of the this project). On the consumers area, we can see this Vue Frontend Application and of course, the 3rd party direct consumers of the API.
 
 ![Image](https://github.com/ElPapi42/deep-deblurring-serving/blob/master/SystemArchitecture.png "Arch")
 
