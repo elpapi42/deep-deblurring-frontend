@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+
+    deblurring-frontend:
+        build: .
+        image: deblurring-frontend:latest
+        ports:
+            - 8081:8080
+        volumes:
+            - .:/deep-deblurring-frontend
+        container_name: deblurring-frontend
