@@ -61,8 +61,7 @@
     </main>
 
     <footer class='bg-gray-800 p-4'>
-        <p class='text-justify text-white'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
-        <h1 class='text-xl text-center text-white p-4'>DeepPNG All Rights Reserved</h1>
+        <app-footer/>
     </footer>
 </div>
 </template>
@@ -71,6 +70,7 @@
 import AppProcessor from './AppProcessor';
 import AppRecent from './AppRecent';
 import AppStack from './AppStack';
+import AppFooter from './AppFooter';
 
 export default {
     name: 'DeblurPage',
@@ -79,6 +79,7 @@ export default {
         AppProcessor,
         AppRecent,
         AppStack,
+        AppFooter,
     },
 }
 </script>
