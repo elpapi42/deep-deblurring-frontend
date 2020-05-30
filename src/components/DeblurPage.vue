@@ -14,23 +14,47 @@
     <main class='flex justify-center bg-gray-200 p-2'>
         <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-screen-lg'>
             <div class='sm:col-span-2 md:col-span-1'>
-                <p class='text-center'>Drop or pick your images in the top-left side, download the results just next to this. If you need to access a previous uploaded image, check the recents tab, if you wish, rate the results with some stars, that will help us improve DeepPNG. Thanks!</p>
+                <h1 class='text-center font-medium'>Quickstart</h1>
+                <p class='text-center'>
+                    For start with the app, just drag and drop an image to the first dashed square,
+                    the magic will happen automatically, after a few seconds, your image will be ready,
+                    click the second dashed square for download it! On the recents tab,
+                    you can see an historic of operations with us, download your past images from there,
+                    and rate the results with your percieved quality of the restored image,
+                    that will help us to improve. Thanks!
+                </p>
             </div>
 
             <!--Recents-->
-            <div class='sm:col-span-2 bg-white shadow-lg'>
+            <div class='sm:col-span-2 bg-white rounded shadow-lg'>
                 <app-recent></app-recent>
             </div>
 
             <div class='md:row-span-2'>
-                <p class='text-center'>Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing.Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing. Testing text for test the tested right side of the design mockup testing</p>
+                <h1 class='text-center font-medium'>What is DeepPNG?</h1>
+                <p class='text-center'>
+                    An open-source personal-project application that offers an image deblurring/restoration solution 
+                    powered by the latest Deep Learning advances in Image Restoration Research. 
+                    The service expose an powerful Deep Learning Model specialized in Image Quality Restoration called DeblurGAN-V2
+                    ( Orest Kupyn and Team 
+                    <a class='text-teal-700' href="https://arxiv.org/abs/1908.03826">
+                        "DeblurGAN-v2: Deblurring (Orders-of-Magnitude) Faster and Better"
+                    </a>
+                    ).
+                </p>
             </div>
 
             <div class='sm:col-span-1 md:col-span-2'>
-                <p class='text-center'>This application is a personal project created by Whitman Bohorquez, Machine Learning Engineer, using the latest advances on the Deep Learning field, briging to life this an easy to use solution for improve the quality of blurred images without effort. You can check the details here: (repo link here)</p>
+                <h1 class='text-center font-medium'>About Usage Restrictions</h1>
+                <p class='text-center'>
+                    Due to budget limitations, this application has stric usage limitations for prevent service overflow.
+                    Please use it just for the minimum an avoid bulk operations in short spans of time.
+                    We are using Heroku free tier for keep this service live, but there are stric usage limits per month,
+                    help us to keep this application live using it just the neccessary time.
+                </p>
             </div>
 
-            <div class='sm:col-span-2 bg-white shadow-lg'>
+            <div class='grid sm:col-span-2 bg-white rounded shadow-lg'>
                 <app-stack></app-stack>
             </div>
         </div>
