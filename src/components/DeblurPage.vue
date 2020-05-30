@@ -14,22 +14,24 @@
     <main class='flex justify-center bg-gray-200 p-2'>
         <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-screen-lg'>
             <div class='sm:col-span-2 md:col-span-1'>
+                <h1 class='text-center font-medium'>Quickstart</h1>
                 <p class='text-center'>
                     For start with the app, just drag and drop an image to the first dashed square,
                     the magic will happen automatically, after a few seconds, your image will be ready,
                     click the second dashed square for download it! On the recents tab,
-                    you can see an historic of operations with us, download your pas images from there,
-                    and rate the results with your percieved quality of the restored images,
-                    that will help us to improve.
+                    you can see an historic of operations with us, download your past images from there,
+                    and rate the results with your percieved quality of the restored image,
+                    that will help us to improve. Thanks!
                 </p>
             </div>
 
             <!--Recents-->
-            <div class='sm:col-span-2 bg-white shadow-lg'>
+            <div class='sm:col-span-2 bg-white rounded shadow-lg'>
                 <app-recent></app-recent>
             </div>
 
             <div class='md:row-span-2'>
+                <h1 class='text-center font-medium'>What is DeepPNG?</h1>
                 <p class='text-center'>
                     An open-source personal-project application that offers an image deblurring/restoration solution 
                     powered by the latest Deep Learning advances in Image Restoration Research. 
@@ -43,13 +45,16 @@
             </div>
 
             <div class='sm:col-span-1 md:col-span-2'>
+                <h1 class='text-center font-medium'>About Usage Restrictions</h1>
                 <p class='text-center'>
                     Due to budget limitations, this application has stric usage limitations for prevent service overflow.
                     Please use it just for the minimum an avoid bulk operations in short spans of time.
+                    We are using Heroku free tier for keep this service live, but there are stric usage limits per month,
+                    help us to keep this application live using it just the neccessary time.
                 </p>
             </div>
 
-            <div class='sm:col-span-2 bg-white shadow-lg'>
+            <div class='grid sm:col-span-2 bg-white rounded shadow-lg'>
                 <app-stack></app-stack>
             </div>
         </div>
