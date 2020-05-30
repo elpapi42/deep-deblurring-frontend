@@ -80,8 +80,12 @@ export default {
                 let data = response.data;
                 data.image_name = image.name;
                 this.$emit('upload', data);
-            }).catch(() => {
-                this.$emit('error', 'server error');
+            }).catch((error) => {
+                if(error.response.status == 429) {
+                    this.$emit('error', 'too many requests');
+                } else {
+                    this.$emit('error', 'server error');
+                }
                 this.resetInput();
             });
         },
