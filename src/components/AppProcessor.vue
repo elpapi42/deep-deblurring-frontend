@@ -113,6 +113,12 @@ export default {
                     this.inputStatus = 'error';
                     this.outputStatus = 'normal';
                     break;
+                case 'too many requests':
+                    this.inputText = 'We have strict usage limits, try again later.';
+                    this.outputText = 'Click here for download the resulting images';
+                    this.inputStatus = 'error';
+                    this.outputStatus = 'normal';
+                    break;
                 default:
                     this.inputText = 'Drag your images here! .png over 5MB will be converted to .jpeg';
                     this.outputText = 'Click here for download the resulting images';
