@@ -22,7 +22,7 @@ export default {
         onRate(score) {
             // Send score to the server
             this.$axios.put(
-                process.env.VUE_APP_API_URL + '/score/',
+                process.env.VUE_APP_API_URL + 'score/',
                 {
                     resource_id: this.uid,
                     score: score

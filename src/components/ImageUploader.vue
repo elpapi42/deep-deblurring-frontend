@@ -26,7 +26,17 @@ export default {
     data: function () {
         return {
             url: '',
+            max_size: 64,
         }
+    },
+
+    mounted() {
+        // Pulls the most up-tp-date API accepted max resolution
+        this.$axios.get(
+            process.env.VUE_APP_API_URL,
+        ).then((response) => {
+            this.max_size = response.data.max_image_res
+        });
     },
 
     methods: {
@@ -54,8 +64,8 @@ export default {
             // Compress the image limiting resolution too
             new Compressor(image, {
                 strict: false,
-                maxWidth: 1024,
-                maxHeight: 1024,
+                maxWidth: this.max_size,
+                maxHeight: this.max_size,
                 success: (resultImage) => {
                     this.url = URL.createObjectURL(resultImage);
                     this.$emit('load', this.url)
@@ -73,7 +83,7 @@ export default {
             formData.append('image', image);
 
             this.$axios.post(
-                process.env.VUE_APP_API_URL + '/inference/',
+                process.env.VUE_APP_API_URL + 'inference/',
                 formData,
                 { headers: { 'Content-Type': 'multipart/form-data' }},
             ).then((response) => {
