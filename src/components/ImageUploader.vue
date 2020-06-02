@@ -26,7 +26,8 @@ export default {
     data: function () {
         return {
             url: '',
-            max_size: 64,
+            max_res: 1024,
+            max_size: 5 * 1024 * 1024,
         }
     },
 
@@ -35,7 +36,8 @@ export default {
         this.$axios.get(
             process.env.VUE_APP_API_URL,
         ).then((response) => {
-            this.max_size = response.data.max_image_res
+            this.max_res = response.data.max_image_res;
+            this.max_size = response.data.max_image_size;
         });
     },
 
@@ -55,18 +57,19 @@ export default {
                 return;
             }
 
-            if(image.size > 3162 * 3162) {
-                this.resetInput();
-                this.$emit('error', 'image too big');
-                return;
-            }
-
             // Compress the image limiting resolution too
             new Compressor(image, {
                 strict: false,
-                maxWidth: this.max_size,
-                maxHeight: this.max_size,
+                maxWidth: this.max_res,
+                maxHeight: this.max_res,
                 success: (resultImage) => {
+                    // Check if the compressed size is accepted by the api
+                    if(resultImage.size > this.max_size) {
+                        this.resetInput();
+                        this.$emit('error', 'image too big', this.max_size / (1024 * 1024));
+                        return;
+                    }
+
                     this.url = URL.createObjectURL(resultImage);
                     this.$emit('load', this.url)
                     this.uploadImage(resultImage)

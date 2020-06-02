@@ -82,7 +82,7 @@ export default {
     },
 
     methods: {
-        onError(message) {
+        onError(message, maxSize=null) {
             this.outputUrl = '';
             this.imageName = '';
             this.loading = false;
@@ -96,7 +96,7 @@ export default {
                     this.outputStatus = 'normal';
                     break;
                 case 'image too big':
-                    this.inputText = 'Image has a size greater than 10MB';
+                    this.inputText = `Image has a size greater than ${maxSize}MB`;
                     this.outputText = 'Click here for download the resulting images';
                     this.inputStatus = 'error';
                     this.outputStatus = 'normal';
