@@ -28,6 +28,8 @@ export default {
             url: '',
             max_res: 1024,
             max_size: 5 * 1024 * 1024,
+            ori_width: null,
+            ori_height: null,
         }
     },
 
@@ -56,6 +58,19 @@ export default {
                 this.$emit('error', 'invalid file type');
                 return;
             }
+
+            // Extracts the original image size
+            let self = this
+            var fr = new FileReader;
+            fr.onload = () => {
+                var img = new Image;
+                img.onload = () => {
+                    self.ori_width = img.width;
+                    self.ori_height = img.height;
+                };
+                img.src = fr.result;
+            };
+            fr.readAsDataURL(image);
 
             // Compress the image limiting resolution too
             new Compressor(image, {
@@ -91,7 +106,12 @@ export default {
                 { headers: { 'Content-Type': 'multipart/form-data' }},
             ).then((response) => {
                 let data = response.data;
+
+                // Push extra data into the response
                 data.image_name = image.name;
+                data.original_width = this.ori_width;
+                data.original_height = this.ori_height;
+
                 this.$emit('upload', data);
             }).catch((error) => {
                 if(error.response.status == 429) {

@@ -26,6 +26,8 @@
                 <image-downloader
                     :src='outputUrl'
                     :name='imageName'
+                    :width='outputWidth'
+                    :height='outputHeight'
                     class='absolute'
                     :class='{ "cursor-pointer": !loading && outputUrl != "" }'
                 />
@@ -57,6 +59,8 @@ export default {
         return {
             outputUrl: '',
             imageName: '',
+            outputWidth: null,
+            outputHeight: null,
             loading: false,
             recents: [],
             inputStatus: 'normal',
@@ -138,6 +142,8 @@ export default {
         onUpload(response) {
             this.outputUrl = response.output_image;
             this.imageName = response.image_name;
+            this.outputWidth = response.original_width;
+            this.outputHeight = response.original_height;
             this.outputStatus = 'ok';
             this.loading = false;
 
@@ -146,7 +152,9 @@ export default {
                 url: this.outputUrl,
                 name: this.imageName,
                 uuid: response.resource_id,
-                score: null
+                score: null,
+                width: this.outputWidth,
+                height: this.outputHeight,
             });
 
             // Writes to localStorage
