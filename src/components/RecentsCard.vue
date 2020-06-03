@@ -2,7 +2,9 @@
     <div class='flex flex-col space-y-2 pb-2 items-center h-full'>
         <image-downloader 
             :src='data.url' 
-            :name='data.name' 
+            :name='data.name'
+            :width='data.width'
+            :height='data.height'
             class='hover:opacity-75 cursor-pointer'
         />
         <app-rating :rating='data.score' :uid='data.uuid' :size='12'/>

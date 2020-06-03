@@ -7,6 +7,7 @@
 
 <script>
 import AppImage from './AppImage'
+import Compressor from 'compressorjs'
 
 export default {
     name: 'ImageDownloader',
@@ -15,6 +16,8 @@ export default {
     props: { 
         src: String,
         name: String,
+        height: Number,
+        width: Number,
     },
 
     methods: {
@@ -25,14 +28,22 @@ export default {
                 this.src,
                 { responseType: 'blob' }
             ).then((response) => {
-                var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-                var fileLink = document.createElement('a');
+                // Resize the imag to the original size
+                new Compressor(response.data, {
+                    width: this.width,
+                    height: this.height,
+                    success: (resultImage) => {
+                        var fileURL = window.URL.createObjectURL(resultImage);
+                        var fileLink = document.createElement('a');
 
-                fileLink.href = fileURL;
-                fileLink.setAttribute('download', this.name);
-                document.body.appendChild(fileLink);
+                        fileLink.href = fileURL;
+                        fileLink.setAttribute('download', this.name);
+                        document.body.appendChild(fileLink);
 
-                fileLink.click();
+                        fileLink.click();
+                    },
+                    error: (err) => { console.log(err) },
+                });
             }).catch((error) => {
                 console.log(error);
             });
