@@ -26,7 +26,21 @@ export default {
     data: function () {
         return {
             url: '',
+            max_res: 1024,
+            max_size: 5 * 1024 * 1024,
+            ori_width: null,
+            ori_height: null,
         }
+    },
+
+    mounted() {
+        // Pulls the most up-tp-date API accepted max resolution
+        this.$axios.get(
+            process.env.VUE_APP_API_URL,
+        ).then((response) => {
+            this.max_res = response.data.max_image_res;
+            this.max_size = response.data.max_image_size;
+        });
     },
 
     methods: {
@@ -45,18 +59,32 @@ export default {
                 return;
             }
 
-            if(image.size > 3162 * 3162) {
-                this.resetInput();
-                this.$emit('error', 'image too big');
-                return;
-            }
+            // Extracts the original image size
+            let self = this
+            var fr = new FileReader;
+            fr.onload = () => {
+                var img = new Image;
+                img.onload = () => {
+                    self.ori_width = img.width;
+                    self.ori_height = img.height;
+                };
+                img.src = fr.result;
+            };
+            fr.readAsDataURL(image);
 
             // Compress the image limiting resolution too
             new Compressor(image, {
                 strict: false,
-                maxWidth: 1024,
-                maxHeight: 1024,
+                maxWidth: this.max_res,
+                maxHeight: this.max_res,
                 success: (resultImage) => {
+                    // Check if the compressed size is accepted by the api
+                    if(resultImage.size > this.max_size) {
+                        this.resetInput();
+                        this.$emit('error', 'image too big', this.max_size / (1024 * 1024));
+                        return;
+                    }
+
                     this.url = URL.createObjectURL(resultImage);
                     this.$emit('load', this.url)
                     this.uploadImage(resultImage)
@@ -73,12 +101,17 @@ export default {
             formData.append('image', image);
 
             this.$axios.post(
-                process.env.VUE_APP_API_URL + '/inference/',
+                process.env.VUE_APP_API_URL + 'inference/',
                 formData,
                 { headers: { 'Content-Type': 'multipart/form-data' }},
             ).then((response) => {
                 let data = response.data;
+
+                // Push extra data into the response
                 data.image_name = image.name;
+                data.original_width = this.ori_width;
+                data.original_height = this.ori_height;
+
                 this.$emit('upload', data);
             }).catch((error) => {
                 if(error.response.status == 429) {
