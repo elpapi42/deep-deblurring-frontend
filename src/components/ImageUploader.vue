@@ -89,8 +89,7 @@ export default {
                     this.$emit('load', this.url)
                     this.uploadImage(resultImage)
                 },
-                error: (err) => {
-                    console.log(err);
+                error: () => {
                     this.$emit('error', 'image error');
                 },
             });
